@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Tecni-Reparación</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  background:#fff;
+  color:#0a3d1b;
+  text-align:center;
+}
+
+/* HEADER */
+header{
+  background: radial-gradient(
+    circle at center 35%,
+    #34c759 0%,
+    #34c759 20%,
+    #0a3d1b 65%
+  );
+  padding:50px 20px;
+  color:#fff;
+}
+
+header img{
+  width:180px;
+  border-radius:50%;
+  background:#fff;
+  padding:8px;
+  box-shadow:0 0 40px rgba(52,199,89,0.95);
+}
+
+/* SECCIONES */
+section{
+  padding:20px 12px;
+}
+
+h2{
+  border-bottom:3px solid #34c759;
+  display:inline-block;
+  padding-bottom:6px;
+  margin-top:35px;
+}
+
+.servicio{
+  border:1px solid #34c759;
+  border-radius:14px;
+  padding:16px;
+  margin:12px auto;
+  max-width:520px;
+  background:#f9fff9;
+}
+
+/* SECCIÓN VIDEOS */
+.video-title{
+  font-size:22px;
+  font-weight:bold;
+  margin-top:40px;
+}
+
+/* CONTENEDOR VERTICAL CORRECTO */
+.video-box{
+  width:100%;
+  max-width:360px;     /* como un celular */
+  margin:20px auto;
+  background:#000;
+  border-radius:18px;
+  overflow:hidden;
+  aspect-ratio: 9 / 16; /* 🔥 CLAVE */
+}
+
+/* IFRAME */
+.video-box iframe{
+  width:100%;
+  height:100%;
+  border:none;
+}
+
+/* BOTÓN WHATSAPP */
+.whatsapp-float{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  width:60px;
+  height:60px;
+  background:#25D366;
+  color:#fff;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:32px;
+  box-shadow:0 6px 18px rgba(0,0,0,0.3);
+  text-decoration:none;
+  z-index:999;
+}
+
+footer{
+  background:#0a3d1b;
+  color:#fff;
+  padding:16px;
+  margin-top:40px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <img src="logo.png" alt="Tecni-Reparación">
+  <h1>Tecni-Reparación</h1>
+  <p>Instalación y reparación profesional</p>
+</header>
+
+<section>
+<h2>Servicios</h2>
+
+<div class="servicio">Instalación de aires acondicionados</div>
+<div class="servicio">Reparación de refrigeración y congelación</div>
+<div class="servicio">Reparación de refrigeradores</div>
+<div class="servicio">Lavadoras, microondas, cocinas y lavaplatos</div>
+<div class="servicio">Instalación de cámaras de vigilancia</div>
+<div class="servicio">Instalación de puertas con seguridad magnética</div>
+
+<div class="video-title">📹 Sección de Videos</div>
+
+<!-- VIDEO VERTICAL -->
+<div class="video-box">
+  <iframe
+    src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/100076303060421/videos/1738753220081026/&show_text=false"
+    allowfullscreen
+    allow="autoplay; encrypted-media; picture-in-picture">
+  </iframe>
+</div>
+
+</section>
+
+<footer>
+© 2025 Tecni-Reparación · Todos los derechos reservados
+</footer>
+
+<a href="https://wa.me/50661180598"
+   class="whatsapp-float"
+   target="_blank">💬</a>
+
+</body>
+</html></html>
