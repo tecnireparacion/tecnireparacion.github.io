@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Tecni-Reparación</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  background:#fff;
+  color:#0a3d1b;
+  text-align:center;
+}
+
+/* HEADER */
+header{
+  background: radial-gradient(
+    circle at center 35%,
+    #34c759 0%,
+    #34c759 20%,
+    #0a3d1b 65%
+  );
+  padding:50px 20px;
+  color:#fff;
+}
+
+header img{
+  width:180px;
+  border-radius:50%;
+  background:#fff;
+  padding:8px;
+  box-shadow:0 0 40px rgba(52,199,89,0.95);
+}
+
+/* SECCIONES */
+section{
+  padding:20px 12px;
+}
+
+h2{
+  border-bottom:3px solid #34c759;
+  display:inline-block;
+  padding-bottom:6px;
+  margin-top:35px;
+}
+
+.servicio{
+  border:1px solid #34c759;
+  border-radius:14px;
+  padding:16px;
+  margin:12px auto;
+  max-width:520px;
+  background:#f9fff9;
+  cursor:pointer;
+  transition: transform 0.2s, background 0.2s;
+}
+.servicio:hover{
+  background:#d4f5d4;
+  transform:scale(1.03);
+}
+
+/* VIDEO BOX PRINCIPAL */
+.video-box{
+  width:100%;
+  max-width:360px;
+  margin:20px auto;
+  border-radius:18px;
+  overflow:hidden;
+  aspect-ratio:9/16;
+}
+.video-box iframe{
+  width:100%;
+  height:100%;
+  border:none;
+}
+
+/* MODAL CENTRADO */
+.modal{
+  display:none;
+  position:fixed;
+  top:0; left:0;
+  width:100%;
+  height:100%;
+  background: rgba(0,0,0,0.8);
+  z-index:1000;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.modal-content{
+  background:#fff;
+  border-radius:14px;
+  max-width:500px;
+  width:95%;
+  max-height:90vh;
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:flex-start;
+  padding:10px;
+}
+.modal-content .cerrar{
+  position:absolute;
+  top:10px;
+  right:15px;
+  font-size:28px;
+  font-weight:bold;
+  cursor:pointer;
+  z-index:10;
+}
+
+/* DESCRIPCIÓN DESLIZABLE */
+.modal-desc-scroll{
+  max-height:200px;
+  overflow-y:auto;
+  padding:12px;
+  text-align:left;
+  font-size:14px;
+  line-height:1.5;
+  background:#f9fff9;
+  width:90%;
+  margin:10px auto;
+  border-radius:10px;
+  border:1px solid #34c759;
+}
+
+/* VIDEO MODAL DEBAJO */
+.modal-video{
+  width:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-shrink:0;
+  margin-top:10px;
+}
+.modal-video iframe{
+  width:100%;
+  max-height:70vh; /* altura máxima del video */
+  aspect-ratio:9/16;
+  border:none;
+  border-radius:14px;
+}
+
+/* BOTÓN WHATSAPP */
+.whatsapp-float{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  width:60px;
+  height:60px;
+  background:#25D366;
+  color:#fff;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:32px;
+  box-shadow:0 6px 18px rgba(0,0,0,0.3);
+  text-decoration:none;
+  z-index:999;
+}
+
+footer{
+  background:#0a3d1b;
+  color:#fff;
+  padding:16px;
+  margin-top:40px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <img src="logo.png" alt="Tecni-Reparación">
+  <h1>Tecni-Reparación</h1>
+  <p>Instalación y reparación profesional</p>
+</header>
+
+<section>
+<h2>Servicios</h2>
+
+<div class="servicio" onclick="abrirModal(0)">Instalación de aires acondicionados</div>
+<div class="servicio" onclick="abrirModal(1)">Reparación de refrigeración y congelación</div>
+<div class="servicio" onclick="abrirModal(2)">Reparación de refrigeradores</div>
+<div class="servicio" onclick="abrirModal(3)">Lavadoras, microondas, cocinas y lavaplatos</div>
+<div class="servicio" onclick="abrirModal(4)">Instalación de cámaras de vigilancia</div>
+<div class="servicio" onclick="abrirModal(5)">Instalación de sistemas magnéticos de seguridad para puertas</div>
+
+<!-- VIDEO PRINCIPAL -->
+<div class="video-box">
+  <iframe 
+    src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/100076303060421/videos/1738753220081026/&show_text=false"
+    allowfullscreen 
+    allow="autoplay; encrypted-media; picture-in-picture">
+  </iframe>
+</div>
+
+</section>
+
+<!-- MODAL -->
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <span class="cerrar" onclick="cerrarModal()">&times;</span>
+    
+    <!-- DESCRIPCIÓN ARRIBA -->
+    <div class="modal-desc-scroll" id="modal-desc"></div>
+
+    <!-- VIDEO DEBAJO -->
+    <div class="modal-video">
+      <iframe id="modal-iframe" src="" allowfullscreen allow="autoplay; encrypted-media; picture-in-picture"></iframe>
+    </div>
+  </div>
+</div>
+
+<footer>
+© 2025 Tecni-Reparación · Todos los derechos reservados
+</footer>
+
+<a href="https://wa.me/50661180598"
+   class="whatsapp-float"
+   target="_blank">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" width="35">
+</a>
+
+<script>
+// Array de videos y descripciones reales
+const serviciosVideos = [
+  { 
+    src:'https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/100076303060421/videos/1738753220081026/&show_text=false',
+    desc:`<strong>Instalación de aires acondicionados</strong><br>
+Nuestro equipo especializado realiza instalaciones de aire acondicionado de manera rápida, segura y eficiente. Nos aseguramos de que tu equipo funcione al máximo rendimiento desde el primer día, optimizando su consumo de energía y garantizando un ambiente fresco y confortable en tu hogar o negocio.<br>
+<strong>Beneficios:</strong>
+<ul>
+<li>Instalación profesional y segura.</li>
+<li>Optimización de rendimiento y ahorro energético.</li>
+<li>Pruebas finales para garantizar funcionamiento perfecto.</li>
+</ul>
+📞 Contrata nuestro servicio hoy y disfruta del confort inmediato.`
+  },
+  { 
+    src:'https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/100076303060421/videos/1738753220081026/&show_text=false',
+    desc:`<strong>Reparación de refrigeración y congelación</strong><br>
+Si tus sistemas de refrigeración o congelación presentan fallas, pérdida de frío o ruidos extraños, nuestro servicio de reparación está listo para solucionarlo. Diagnósticos precisos, repuestos de calidad y técnicos expertos garantizan que tu equipo vuelva a operar como nuevo.<br>
+<strong>Beneficios:</strong>
+<ul>
+<li>Reparación rápida y efectiva.</li>
+<li>Diagnóstico profesional y preciso.</li>
+<li>Garantía de funcionamiento y eficiencia.</li>
+</ul>
+📞 Contáctanos y recupera la eficiencia de tu refrigeración.`
+  },
+  { 
+    src:'https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/100076303060421/videos/1738753220081026/&show_text=false',
+    desc:`<strong>Reparación de refrigeradores</strong><br>
+Reparar tu refrigerador nunca fue tan fácil. Nos encargamos de cualquier falla: desde compresores, fugas de gas, problemas eléctricos, hasta mal funcionamiento de los termostatos.<br>
+<strong>Beneficios:</strong>
+<ul>
+<li>Soluciones duraderas para cualquier marca o modelo.</li>
+<li>Técnicos especializados y experimentados.</li>
+<li>Evita pérdidas de alimentos y molestias en tu hogar.</li>
+</ul>
+📞 Agenda tu reparación y deja tu refrigerador como nuevo.`
+  },
+  { 
+    src:'https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/100076303060421/videos/1738753220081026/&show_text=false',
+    desc:`<strong>Lavadoras, microondas, cocinas y lavaplatos</strong><br>
+Ofrecemos servicio técnico integral para todos tus electrodomésticos: lavadoras que no centrifugan, microondas que no calientan, cocinas con quemadores defectuosos o lavaplatos que no drenan correctamente.<br>
+<strong>Beneficios:</strong>
+<ul>
+<li>Diagnóstico rápido y soluciones efectivas.</li>
+<li>Precios justos y trabajos garantizados.</li>
+<li>Repuestos de calidad y servicio confiable.</li>
+</ul>
+📞 Llama ahora y devuelve la vida a tus electrodomésticos.`
+  },
+  { 
+    src:'https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/100076303060421/videos/1738753220081026/&show_text=false',
+    desc:`<strong>Instalación de cámaras de vigilancia</strong><br>
+Protege tu hogar o negocio con nuestro servicio profesional de instalación de cámaras de seguridad. Elegimos las mejores ubicaciones para máxima cobertura, configuramos sistemas inteligentes de monitoreo y te enseñamos a usarlos.<br>
+<strong>Beneficios:</strong>
+<ul>
+<li>Tranquilidad y prevención de robos.</li>
+<li>Monitoreo remoto desde cualquier lugar.</li>
+<li>Instalación profesional con garantía de funcionamiento.</li>
+</ul>
+📞 Solicita tu instalación y cuida lo que más importa.`
+  },
+  { 
+    src:'https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/100076303060421/videos/1738753220081026/&show_text=false',
+    desc:`<strong>Instalación de sistemas magnéticos de seguridad para puertas</strong><br>
+Aumenta la seguridad de tu hogar o negocio con la instalación de sistemas magnéticos de control y cierre para puertas. Nuestro equipo experto se encarga de colocar y configurar cerraduras magnéticas que combinan protección avanzada y facilidad de uso.<br>
+<strong>Beneficios:</strong>
+<ul>
+<li>Cierre seguro y confiable, evitando aperturas no autorizadas.</li>
+<li>Tecnología moderna compatible con accesos eléctricos o manuales.</li>
+<li>Instalación profesional con garantía de funcionamiento.</li>
+</ul>
+📞 Protege tu espacio hoy mismo con un sistema de seguridad confiable.`
+  }
+];
+
+// Abrir modal
+function abrirModal(index){
+  const modal = document.getElementById('modal');
+  const iframe = document.getElementById('modal-iframe');
+  const descScroll = document.getElementById('modal-desc');
+  iframe.src = serviciosVideos[index].src;
+  descScroll.innerHTML = serviciosVideos[index].desc;
+  modal.style.display = 'flex';
+}
+
+// Cerrar modal
+function cerrarModal(){
+  document.getElementById('modal').style.display='none';
+  document.getElementById('modal-iframe').src='';
+}
+
+// Cerrar al hacer click fuera
+window.onclick = function(e){
+  if(e.target.id==='modal') cerrarModal();
+}
+</script>
+
+</body>
+</html>
