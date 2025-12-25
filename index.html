@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Tecni-Reparación</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  background:#fff;
+  color:#0a3d1b;
+  text-align:center;
+}
+
+/* HEADER */
+header{
+  background: radial-gradient(
+    circle at center 35%,
+    #34c759 0%,
+    #34c759 20%,
+    #0a3d1b 65%
+  );
+  padding:50px 20px;
+  color:#fff;
+}
+
+header img{
+  width:180px;
+  border-radius:50%;
+  background:#fff;
+  padding:8px;
+  box-shadow:0 0 40px rgba(52,199,89,0.95);
+}
+
+/* SECCIONES */
+section{
+  padding:20px 12px;
+}
+
+h2{
+  border-bottom:3px solid #34c759;
+  display:inline-block;
+  padding-bottom:6px;
+  margin-top:35px;
+}
+
+.servicio{
+  border:1px solid #34c759;
+  border-radius:14px;
+  padding:16px;
+  margin:12px auto;
+  max-width:520px;
+  background:#f9fff9;
+  cursor:pointer;
+  transition: transform 0.2s, background 0.2s;
+}
+.servicio:hover{
+  background:#d4f5d4;
+  transform:scale(1.03);
+}
+
+/* VIDEO BOX */
+.video-box{
+  width:100%;
+  max-width:360px;
+  margin:20px auto;
+  border-radius:18px;
+  overflow:hidden;
+  aspect-ratio:9/16;
+}
+.video-box iframe{
+  width:100%;
+  height:100%;
+  border:none;
+}
+
+/* MODAL */
+.modal{
+  display:none;
+  position:fixed;
+  top:0; left:0;
+  width:100%;
+  height:100%;
+  background: rgba(0,0,0,0.7);
+  z-index:1000;
+  align-items:center;
+  justify-content:center;
+}
+.modal-content{
+  background:#fff;
+  padding:20px;
+  border-radius:14px;
+  max-width:400px;
+  width:90%;
+  text-align:center;
+  position:relative;
+}
+.modal-content .cerrar{
+  position:absolute;
+  top:10px;
+  right:15px;
+  font-size:28px;
+  font-weight:bold;
+  cursor:pointer;
+}
+.modal-content .modal-video{
+  width:100%;
+  border-radius:14px;
+  overflow:hidden;
+  aspect-ratio:9/16;
+  margin-bottom:12px;
+}
+
+/* BOTÓN WHATSAPP */
+.whatsapp-float{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  width:60px;
+  height:60px;
+  background:#25D366;
+  color:#fff;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:32px;
+  box-shadow:0 6px 18px rgba(0,0,0,0.3);
+  text-decoration:none;
+  z-index:999;
+}
+
+footer{
+  background:#0a3d1b;
+  color:#fff;
+  padding:16px;
+  margin-top:40px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <img src="logo.png" alt="Tecni-Reparación">
+  <h1>Tecni-Reparación</h1>
+  <p>Instalación y reparación profesional</p>
+</header>
+
+<section>
+<h2>Servicios</h2>
+
+<div class="servicio" onclick="abrirModal(0)">Instalación de aires acondicionados</div>
+<div class="servicio" onclick="abrirModal(1)">Reparación de refrigeración y congelación</div>
+<div class="servicio" onclick="abrirModal(2)">Reparación de refrigeradores</div>
+<div class="servicio" onclick="abrirModal(3)">Lavadoras, microondas, cocinas y lavaplatos</div>
+<div class="servicio" onclick="abrirModal(4)">Instalación de cámaras de vigilancia</div>
+<div class="servicio" onclick="abrirModal(5)">Instalación de puertas con seguridad magnética</div>
+
+<!-- VIDEO PRINCIPAL -->
+<div class="video-box">
+  <iframe 
+    src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/100076303060421/videos/1738753220081026/&show_text=false"
+    allowfullscreen 
+    allow="autoplay; encrypted-media; picture-in-picture">
+  </iframe>
+</div>
+
+</section>
+
+<!-- MODAL -->
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <span class="cerrar" onclick="cerrarModal()">&times;</span>
+    <div class="modal-video">
+      <iframe id="modal-iframe" src="" allowfullscreen allow="autoplay; encrypted-media; picture-in-picture"></iframe>
+    </div>
+    <p id="modal-desc"></p>
+  </div>
+</div>
+
+<footer>
+© 2025 Tecni-Reparación · Todos los derechos reservados
+</footer>
+
+<a href="https://wa.me/50661180598"
+   class="whatsapp-float"
+   target="_blank">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" width="35">
+</a>
+
+<script>
+// Array de videos y descripciones (fácil de cambiar)
+const serviciosVideos = [
+  { src:'https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/100076303060421/videos/1738753220081026/&show_text=false', desc:'Instalación profesional de aires acondicionados' },
+  { src:'https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/100076303060421/videos/1738753220081026/&show_text=false', desc:'Reparación y mantenimiento de refrigeración y congelación' },
+  { src:'https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/100076303060421/videos/1738753220081026/&show_text=false', desc:'Reparación de refrigeradores domésticos e industriales' },
+  { src:'https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/100076303060421/videos/1738753220081026/&show_text=false', desc:'Servicio en lavadoras, microondas, cocinas y lavaplatos' },
+  { src:'https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/100076303060421/videos/1738753220081026/&show_text=false', desc:'Instalación de cámaras de vigilancia y seguridad' },
+  { src:'https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/100076303060421/videos/1738753220081026/&show_text=false', desc:'Instalación de puertas con seguridad magnética' }
+];
+
+// Abrir modal
+function abrirModal(index){
+  const modal = document.getElementById('modal');
+  const iframe = document.getElementById('modal-iframe');
+  const desc = document.getElementById('modal-desc');
+  iframe.src = serviciosVideos[index].src;
+  desc.textContent = serviciosVideos[index].desc;
+  modal.style.display = 'flex';
+}
+
+// Cerrar modal
+function cerrarModal(){
+  document.getElementById('modal').style.display='none';
+  document.getElementById('modal-iframe').src='';
+}
+
+// Cerrar al hacer click fuera
+window.onclick = function(e){
+  if(e.target.id==='modal') cerrarModal();
+}
+</script>
+
+</body>
+</html>
