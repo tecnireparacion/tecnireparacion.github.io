@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tecni-Reparación</title>
+<style>
+/* GENERAL */
+body {
+  font-family: Arial, sans-serif;
+  margin:0;
+  padding:0;
+  background: #f5f5f5;
+}
+
+/* HEADER Y LOGO CON BRILLO */
+header {
+  position: relative;
+  text-align: center;
+  color: white;
+  padding: 50px 0;
+  background: #004d00;
+  overflow: hidden;
+}
+
+/* BRILLO DETRÁS DEL LOGO */
+header::before {
+  content:"";
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(0,0,0,0) 70%);
+  border-radius: 50%;
+  z-index: 0;
+}
+
+header img.logo {
+  width: 150px;
+  display: block;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+header h1, header p {
+  position: relative;
+  z-index: 1;
+  margin: 10px 0 0 0;
+}
+
+/* SECCIÓN DE SERVICIOS */
+#servicios {
+  padding: 30px 20px;
+}
+#servicios h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #004d00;
+}
+.servicios-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+.servicio {
+  background-color: #004d00;
+  color: #fff;
+  padding: 12px;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background 0.3s, transform 0.2s;
+  text-align: center;
+}
+.servicio:hover {
+  background-color: #006600;
+  transform: scale(1.03);
+}
+
+/* VIDEO CONTAINER 9:16 */
+.video-container {
+  position: relative;
+  width: 90%;
+  max-width: 400px;
+  padding-top: 177.77%; /* 9:16 */
+  margin: 0 auto;
+}
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* MODAL MEJORADO */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.7);
+  animation: fadeIn 0.3s ease;
+}
+@keyframes fadeIn {
+  from {opacity:0;}
+  to {opacity:1;}
+}
+.modal-contenido {
+  background-color: #fff;
+  margin: 5% auto;
+  padding: 20px;
+  width: 90%;
+  max-width: 400px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+  transform: translateY(-20px);
+  animation: slideDown 0.3s ease forwards;
+}
+@keyframes slideDown {
+  from {transform: translateY(-50px); opacity:0;}
+  to {transform: translateY(0); opacity:1;}
+}
+.cerrar {
+  color: #333;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.cerrar:hover { color: #000; }
+
+/* BOTÓN WHATSAPP */
+#whatsapp {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #25D366;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 60px;
+  font-size: 28px;
+  box-shadow: 2px 2px 5px #000;
+  z-index: 1001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#whatsapp img {
+  width: 35px;
+  height: 35px;
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <img src="logo.png" alt="Tecni-Reparación" class="logo">
+  <h1>Tecni-Reparación</h1>
+  <p>Instalación y reparación profesional</p>
+</header>
+
+<!-- SECCIÓN DE SERVICIOS -->
+<section id="servicios">
+  <h2>Servicios</h2>
+  <div class="servicios-lista">
+    <div class="servicio" onclick="abrirModal('video1')">Instalación de aires acondicionados</div>
+    <div class="servicio" onclick="abrirModal('video2')">Reparación de refrigeración y congelación</div>
+    <div class="servicio" onclick="abrirModal('video3')">Reparación de refrigeradores</div>
+    <div class="servicio" onclick="abrirModal('video4')">Lavadoras, microondas, cocinas y lavaplatos</div>
+    <div class="servicio" onclick="abrirModal('video5')">Instalación de cámaras de vigilancia</div>
+    <div class="servicio" onclick="abrirModal('video6')">Instalación de puertas con seguridad magnética</div>
+  </div>
+</section>
+
+<!-- VIDEO PRINCIPAL -->
+<section id="video-principal">
+  <div class="video-container">
+    <iframe src="https://www.facebook.com/plugins/video.php?href=https://m.facebook.com/watch/?v=1738753220081026" allowfullscreen></iframe>
+  </div>
+</section>
+
+<!-- MODAL DE SERVICIOS -->
+<div id="modal" class="modal">
+  <div class="modal-contenido">
+    <span class="cerrar" onclick="cerrarModal()">&times;</span>
+    <div id="modal-video"></div>
+    <p id="modal-descripcion"></p>
+  </div>
+</div>
+
+<!-- BOTÓN WHATSAPP -->
+<a id="whatsapp" href="https://wa.me/50661180598" target="_blank">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+</a>
+
+<script>
+// VIDEOS Y DESCRIPCIONES DE CADA SERVICIO
+const videos = {
+  video1: { src: 'https://www.facebook.com/plugins/video.php?href=TU_LINK_VIDEO_1', descripcion: 'Instalación profesional de aires acondicionados' },
+  video2: { src: 'https://www.facebook.com/plugins/video.php?href=TU_LINK_VIDEO_2', descripcion: 'Reparación y mantenimiento de refrigeración y congelación' },
+  video3: { src: 'https://www.facebook.com/plugins/video.php?href=TU_LINK_VIDEO_3', descripcion: 'Reparación de refrigeradores domésticos e industriales' },
+  video4: { src: 'https://www.facebook.com/plugins/video.php?href=TU_LINK_VIDEO_4', descripcion: 'Servicio en lavadoras, microondas, cocinas y lavaplatos' },
+  video5: { src: 'https://www.facebook.com/plugins/video.php?href=TU_LINK_VIDEO_5', descripcion: 'Instalación de cámaras de vigilancia y seguridad' },
+  video6: { src: 'https://www.facebook.com/plugins/video.php?href=TU_LINK_VIDEO_6', descripcion: 'Instalación de puertas con seguridad magnética' }
+};
+
+// ABRIR MODAL
+function abrirModal(videoId) {
+  const modal = document.getElementById('modal');
+  const modalVideo = document.getElementById('modal-video');
+  const modalDesc = document.getElementById('modal-descripcion');
+  modalVideo.innerHTML = `<div class="video-container"><iframe src="${videos[videoId].src}" allowfullscreen></iframe></div>`;
+  modalDesc.textContent = videos[videoId].descripcion;
+  modal.style.display = 'block';
+}
+
+// CERRAR MODAL
+function cerrarModal() {
+  const modal = document.getElementById('modal');
+  const modalVideo = document.getElementById('modal-video');
+  modal.style.display = 'none';
+  modalVideo.innerHTML = '';
+}
+
+// CERRAR SI HACE CLICK FUERA
+window.onclick = function(event) {
+  const modal = document.getElementById('modal');
+  if (event.target == modal) cerrarModal();
+}
+</script>
+
+</body>
+</html>
